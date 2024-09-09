@@ -27,10 +27,7 @@ class MeetingsController < ApplicationController
 
   # PATCH/PUT /meetings/1
   def update
-    @meeting.destroy!
-    @meeting = Meeting.new(meeting_params)
-    @meeting.user = @current_user
-    if @meeting.save
+    if @meeting.update(meeting_params)
       render json: @meeting
     else
       render json: @meeting.errors, status: :unprocessable_entity

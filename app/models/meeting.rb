@@ -14,7 +14,7 @@ class Meeting
 
   def time_validation
     if start_time.is_a?(Time) && end_time.is_a?(Time)
-      meetings = Meeting.all
+      meetings = Meeting.excludes(id:)
       meetings.each do |m|
         next unless ((start_time >= m.start_time && start_time <= m.end_time) ||
           (end_time >= m.start_time && end_time <= m.end_time)) ||
